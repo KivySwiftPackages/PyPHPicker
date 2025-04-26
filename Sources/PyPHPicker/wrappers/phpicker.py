@@ -3,7 +3,7 @@ from swift_types import *
 @wrapper(py_init=False)
 class PHPickerResults:
 
-    def __getitem__(self) -> object: ...
+    def __getitem__(self, idx: int) -> object: ...
 
 @wrapper
 class PHPicker:

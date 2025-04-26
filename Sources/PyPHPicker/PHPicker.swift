@@ -8,24 +8,14 @@
 import Foundation
 import PhotosUI
 import UniformTypeIdentifiers
-import PythonSwiftCore
+import PySwiftCore
+import PythonCore
+import PySerializing
 
 import PyFoundation
 
-extension NSItemProvider: PyConvertible {
-    public var pyObject: PythonObject {
-        .init(getter: pyPointer)
-    }
-    
-    public var pyPointer: PyPointer {
-        create_pyNSItemProvider(self)
-    }
-    
-    
-}
-
-public class PHPickerResults: PHPickerResults_PyProtocol {
-    public func __getitem__(idx: Int) -> PythonSwiftCore.PyPointer? {
+public class PHPickerResults {
+    public func __getitem__(idx: Int) -> PyPointer? {
         guard idx < results.count else { return nil }
         return results[idx].itemProvider.pyPointer
     }
@@ -43,7 +33,7 @@ public class PHPickerResults: PHPickerResults_PyProtocol {
 
 public class PHPicker {
     var view: PHPickerViewController?
-    var py_callback: PHPickerPyCallback?
+    public var py_callback: PyCallback?
     
     init() {
 
@@ -62,9 +52,7 @@ public class PHPicker {
 extension PHPicker: PHPickerViewControllerDelegate {
     public func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         py_callback?.picker_didFinishPicking(
-            results: create_pyPHPickerResults(
-                .init(results: results)
-            )
+            results: PHPickerResults.asPyPointer(.init(results: results))
         )
     }
     
