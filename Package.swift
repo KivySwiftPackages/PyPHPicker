@@ -10,8 +10,7 @@ let package = Package(
 		.library(name: "PyPHPicker", targets: ["PyPHPicker"])
 	],
 	dependencies: [
-        .package(url: "https://github.com/KivySwiftLink/PySwiftKit", from: .init(311, 0, 0)),
-        //.package(url: "https://github.com/PythonSwiftLink/SwiftonizePlugin", from: .init(0, 0, 0)),
+        .package(url: "https://github.com/kv-swift/PySwiftKit", from: .init(311, 0, 0)),
         .package(url: "https://github.com/KivySwiftPackages/PyFoundation", from: .init(311, 0, 0))
 	],
 	targets: [
@@ -20,8 +19,6 @@ let package = Package(
 			dependencies: [
                 .product(name: "SwiftonizeModules", package: "PySwiftKit"),
                 "PyFoundation"
-				//"SwiftOpenCV",
-
 			],
 			plugins: []
 		),
