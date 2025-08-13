@@ -10,7 +10,7 @@ let package = Package(
 		.library(name: "PyPHPicker", targets: ["PyPHPicker"])
 	],
 	dependencies: [
-        .package(url: "https://github.com/kv-swift/PySwiftKit", from: .init(311, 0, 0)),
+        .package(url: "https://github.com/py-swift/PySwiftKit", from: .init(311, 0, 0)),
         .package(url: "https://github.com/KivySwiftPackages/PyFoundation", from: .init(311, 0, 0))
 	],
 	targets: [
